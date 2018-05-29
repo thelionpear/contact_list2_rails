@@ -20,6 +20,25 @@ class ContactsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @contact = Contact.find(params[:id])
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
+  
+    if @contact.update(contact_params)
+      redirect_to contacts_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    Contact.find(params[:id]).destroy
+    redirect_to contacts_path
+  end
  
   private
  
