@@ -9,14 +9,17 @@
 
 5.times do |contact|
     
-    Contact.create(
+    contact = Contact.create(
         name: Faker::Name.unique.name,
         age: Faker::Number.between(18, 100),
         hair_color: Faker::Color.color_name, 
         eye_color: Faker::Color.color_name, 
         gender: ["female", "male"].sample,
         alive: Faker::Boolean.boolean 
-    )    
+    )  
+    contact.notes.create(
+        body: ["Harry Potter House: #{Faker::HarryPotter.house}", "Pokemon: #{Faker::Pokemon.name}", "Favorite Dog: #{Faker::Dog.breed}"].sample
+    )  
 end 
 
 puts "Seeded"
